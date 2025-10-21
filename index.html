@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Косметические Услуги</title>
+    <!-- Подключение Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Общие стили */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            color: #555;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: #c2185b;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 3rem;
+        }
+        h2 {
+            font-size: 2.5rem;
+        }
+        h3 {
+            font-size: 2rem;
+        }
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+        a {
+            font-weight: 500;
+            color: #e91e63;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #c2185b;
+            text-decoration: underline;
+        }
+        button {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            background: linear-gradient(135deg, #e91e63, #c2185b);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Навбар */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #c2185b;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links li {
+            margin-left: 20px;
+        }
+        .nav-links a {
+            font-weight: 500;
+            color: #333;
+        }
+
+        /* Герой-секция */
+        .hero {
+            background: linear-gradient(to right, #fce4ec, #f8bbd9);
+            padding: 100px 20px 60px;
+            margin-top: 60px; /* Учитываем фиксированный навбар */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .hero-content {
+            margin-bottom: 40px; /* Отступ перед косметологом */
+        }
+        .hero h1 {
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3rem; /* Увеличенный размер текста */
+            margin-bottom: 20px; /* Немного больше отступа для красоты */
+        }
+        .cosmetologist {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .cosmetologist img {
+            width: 250px;
+            height: auto;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Секции */
+        section {
+            padding: 60px 0;
+        }
+        .services {
+            background-color: #fff;
+        }
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .service-item {
+            background-color: #f8f8f8;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        .service-item img {
+            width: 200px;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .service-item img:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+        .contact {
+            background-color: #fce4ec;
+            text-align: center;
+        }
+
+        /* Футер */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1.1rem; /* На мобильных чуть меньше для читаемости */
+            }
+            nav {
+                flex-direction: column;
+                padding: 10px;
+            }
+            .nav-links {
+                margin-top: 10px;
+            }
+            .nav-links li {
+                margin-left: 0;
+                margin-right: 20px;
+            }
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+            .cosmetologist img {
+                width: 150px;
+            }
+            .service-item img {
+                width: 150px; /* Уменьшаем картинки на мобильных */
+                margin: 0 auto 15px; /* Центрируем */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Косметические Услуги</div>
+            <ul class="nav-links">
+                <li><a href="#services" onclick="scrollToSection('services'); return false;">Услуги</a></li>
+                <li><a href="#contact" onclick="scrollToSection('contact'); return false;">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Ваш идеальный образ</h1>
+                <p>Профессиональные косметические услуги для красоты и ухода за кожей.</p>
+                <p>Приём осуществляется по адресу: Нижняя первомайская, дом 83</p>
+            </div>
+            <div class="cosmetologist">
+                <img src="data:image/jpeg;base64,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" alt="Фотография косметолога">
+                <h3>Ольга Андреевна</h3>
+                <p>Косметолог с медицинским образованием</p>
+            </div>
+        </section>
+
+        <section id="services" class="services">
+            <div class="container">
+                <h2>Наши Услуги</h2>
+                <div class="service-grid">
+                    <div class="service-item">
+                        <img src="https://th.bing.com/th/id/OIG1.h2P1i5iy8ziJThy21PY0?w=270&h=270&c=6&r=0&o=5&cb=12&dpr=2&pid=ImgGn" alt="Ультразвуковая чистка лица">
+                        <h3>Ультразвуковая чистка лица</h3>
+                        <p>Глубокая чистка кожи с помощью ультразвука для обновления и очищения.</p>
+                        <p><strong>Цена: 2500 руб.</strong></p>
+                    </div>
+                    <div class="service-item">
+                        <img src="https://th.bing.com/th/id/OIG2.78cSuYEQhMPisgGPLs3Q?w=270&h=270&c=6&r=0&o=5&cb=12&dpr=2&pid=ImgGn" alt="Комбинированная чистка">
+                        <h3>Комбинированная чистка</h3>
+                        <p>Комплексная чистка, сочетающая механические и аппаратные методы.</p>
+                        <p><strong>Цена: 3000 руб.</strong></p>
+                    </div>
+                    <div class="service-item">
+                        <img src="https://th.bing.com/th/id/OIG3.zbjx40C67H0J2Nk0WHLz?w=270&h=270&c=6&r=0&o=5&cb=12&dpr=2&pid=ImgGn" alt="Желтый пилинг">
+                        <h3>Желтый пилинг</h3>
+                        <p>Химический пилинг для осветления пигментации и выравнивания тона кожи.</p>
+                        <p><strong>Цена: 2500 руб.</strong></p>
+                    </div>
+                    <div class="service-item">
+                        <img src="https://th.bing.com/th/id/OIG2.EF.vbTDcoXD0SBKImq1u?w=270&h=270&c=6&r=0&o=5&cb=12&dpr=2&pid=ImgGn" alt="Миндальный пилинг">
+                        <h3>Миндальный пилинг</h3>
+                        <p>Мягкий пилинг на основе миндальной кислоты для чувствительной кожи.</p>
+                        <p><strong>Цена: 2000 руб.</strong></p>
+                    </div>
+                    <div class="service-item">
+                        <img src="https://th.bing.com/th/id/OIG4.Eu2kdKNWXPOpcYThQQwx?w=270&h=270&c=6&r=0&o=5&cb=12&dpr=2&pid=ImgGn" alt="Пилинг Джесснера">
+                        <h3>Пилинг Джесснера</h3>
+                        <p>Многослойный химический пилинг для глубокого очищения и омоложения.</p>
+                        <p><strong>Цена: 2500 руб.</strong></p>
+                    </div>
+                    <div class="service-item">
+                        <img src="https://th.bing.com/th/id/OIG1.FJdt.OriPaK4AtbpI0fx?w=270&h=270&c=6&r=0&o=5&cb=12&dpr=2&pid=ImgGn" alt="Пилинг PRX-T33 1 мл">
+                        <h3>Пилинг PRX-T33 1 мл</h3>
+                        <p>Неинъекционный биоревитализант для увлажнения и лифтинга кожи.</p>
+                        <p><strong>Цена: 3500 руб.</strong></p>
+                    </div>
+                    <div class="service-item">
+                        <img src="https://th.bing.com/th/id/OIG1.VA2GBldP8zZlcaaMuHPN?w=270&h=270&c=6&r=0&o=5&cb=12&dpr=2&pid=ImgGn" alt="Биоревитализация">
+                        <h3>Биоревитализация</h3>
+                        <p>Инъекции гиалуроновой кислоты для глубокого увлажнения и регенерации.</p>
+                        <p><strong>Цена: от 4500 руб.</strong></p>
+                    </div>
+                    <div class="service-item">
+                        <img src="https://th.bing.com/th/id/OIG3.79aLgakt9luBzLn05iqB?w=270&h=270&c=6&r=0&o=5&cb=12&dpr=2&pid=ImgGn" alt="Плазмолифтинг 1 пробирка">
+                        <h3>Плазмолифтинг 1 пробирка</h3>
+                        <p>PRP-терапия с использованием собственной плазмы крови для омоложения.</p>
+                        <p><strong>Цена: 2500 руб.</strong></p>
+                    </div>
+                    <div class="service-item">
+                        <img src="https://th.bing.com/th/id/OIG4.xmVxELtbE592lbCo5YmS?w=270&h=270&c=6&r=0&o=5&cb=12&dpr=2&pid=ImgGn" alt="Плазмолифтинг 2 пробирки">
+                        <h3>Плазмолифтинг 2 пробирки</h3>
+                        <p>Усиленная PRP-терапия для более интенсивного восстановления кожи.</p>
+                        <p><strong>Цена: 4500 руб.</strong></p>
+                    </div>
+                    <div class="service-item">
+                        <img src="https://th.bing.com/th/id/OIG3.FWsw7jThDI_gGJ0.ijr4?w=270&h=270&c=6&r=0&o=5&cb=12&dpr=2&pid=ImgGn" alt="Плазма + Лаеннек">
+                        <h3>Плазма + Лаеннек</h3>
+                        <p>Комбинированная терапия с плазмой и японским препаратом для детокса.</p>
+                        <p><strong>Цена: 5000 руб.</strong></p>
+                    </div>
+                    <div class="service-item">
+                        <img src="https://th.bing.com/th/id/OIG2.qQD.SHj_yeGDoC8dUemB?w=270&h=270&c=6&r=0&o=5&cb=12&dpr=2&pid=ImgGn" alt="Контурная пластика">
+                        <h3>Контурная пластика</h3>
+                        <p>Инъекции филлерами для коррекции объема и контуров лица.</p>
+                        <p><strong>Цена: от 6000 руб.</strong></p>
+                    </div>
+                    <div class="service-item">
+                        <img src="https://th.bing.com/th/id/OIG1.mSH5aShDusV5M5l9xsqQ?w=270&h=270&c=6&r=0&o=5&cb=12&dpr=2&pid=ImgGn" alt="Ботокс: лоб, межбровье, глаза">
+                        <h3>Ботокс: лоб, межбровье, глаза</h3>
+                        <p>Инъекции ботулотоксина для разглаживания мимических морщин.</p>
+                        <p><strong>Цена: 5000 руб.</strong></p>
+                    </div>
+                    <div class="service-item">
+                        <img src="https://th.bing.com/th/id/OIG1.Bc5jTnq0.pIP4fvnPRG5?w=270&h=270&c=6&r=0&o=5&cb=12&dpr=2&pid=ImgGn" alt="Ботокс в подмышки">
+                        <h3>Ботокс в подмышки</h3>
+                        <p>Инъекции для снижения потоотделения и контроля гипергидроза.</p>
+                        <p><strong>Цена: 9000 руб.</strong></p>
+                    </div>
+                    <div class="service-item">
+                        <img src="https://th.bing.com/th/id/OIG3.NLCD7nM7rc2sKEPujVzZ?w=270&h=270&c=6&r=0&o=5&cb=12&dpr=2&pid=ImgGn"Мезотерапия кожи головы">
+                        <h3>Мезотерапия кожи головы</h3>
+                        <p>Инъекции витаминов и питательных веществ для укрепления волос.</p>
+                        <p><strong>Цена: от 2500 руб.</strong></p>
+                    </div>
+                    <div class="service-item">
+                        <img src="https://th.bing.com/th/id/OIG1.g8nnc9YkE2yngHWjDcUF?w=270&h=270&c=6&r=0&o=5&cb=12&dpr=2&pid=ImgGn" alt="Увеличение губ">
+                        <h3>Увеличение губ</h3>
+                        <p>Контурная пластика губ филлерами для объема и формы.</p>
+                        <p><strong>Цена: от 6000 руб.</strong></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2>Контакты</h2>
+                <p>Телефон: 89647804077‬</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'  // Убедимся, что секция начинается сверху, учитывая навбар
+            });
+        }
+
+        // Дополнительно: обработка ссылок в навбаре (на случай, если onclick не сработает)
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    scrollToSection(targetId);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
